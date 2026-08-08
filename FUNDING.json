@@ -1,0 +1,53 @@
+{
+  "individual_donations": {
+    "accepts_donations": true,
+    "platforms": {
+      "github_sponsors": "",
+      "open_collective": "",
+      "ko_fi": ""
+    }
+  },
+  "corporate_sponsorship": {
+    "accepts_corporate_donations": true,
+    "enterprise_contact_email": "",
+    "sponsorship_levels": [
+      {
+        "name": "Gold",
+        "annual_usd_minimum": 10000,
+        "benefits": [
+          "Logo on README sponsors section",
+          "Logo on dedicated sponsors page with website link",
+          "Priority issue triage"
+        ],
+        "logo_placement": "readme_section",
+        "logo_size_px": 200
+      },
+      {
+        "name": "Silver",
+        "annual_usd_minimum": 2500,
+        "benefits": [
+          "Name in README contributors list",
+          "Badge on sponsors page"
+        ],
+        "logo_placement": "contributors_list",
+        "logo_size_px": 64
+      },
+      {
+        "name": "Community Partner",
+        "annual_usd_minimum": 500,
+        "benefits": [
+          "Thank-you mention in release notes"
+        ],
+        "logo_placement": "release_notes",
+        "logo_size_px": 48
+      }
+    ],
+    "existing_sponsors": [],
+    "in_kind_accepted": {
+      "cloud_credits": true,
+      "ci_cd_minutes": true,
+      "software_licenses": true
+    },
+    "notes": "Sponsorships are non-exclusive. Logo placement must follow BRAND.md / README brand guidelines. Fill in existing_sponsors as real sponsorship agreements are signed — do not populate with placeholder or example companies."
+  }
+}

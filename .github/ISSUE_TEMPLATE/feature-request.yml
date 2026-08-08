@@ -1,0 +1,32 @@
+name: 💡 Feature Request
+description: Suggest a new feature
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem statement
+      description: Is your feature request related to a problem? Please describe.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+
+  - type: checkboxes
+    id: commitment
+    attributes:
+      label: Implementation interest
+      options:
+        - label: I'm willing to contribute code for this feature
+        - label: I can help test this feature during development

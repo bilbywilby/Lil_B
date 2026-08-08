@@ -1,0 +1,29 @@
+name: 🎨 Brand Asset Issue
+description: Report a problem with a logo file, or request a new size/format
+title: "[Brand]: "
+labels: ["brand-assets"]
+body:
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Type of issue
+      options:
+        - Incorrect / corrupted asset
+        - Missing size or format
+        - Question about usage rules
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: affected-file
+    attributes:
+      label: Affected file
+      placeholder: "assets/logo/husky-primary.svg"
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+    validations:
+      required: true
