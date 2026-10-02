@@ -1,0 +1,102 @@
+/* DevHound theme for Jellyfin (privacy default: no third-party requests).
+   Paste into Dashboard > Branding > Custom CSS code. Raw CSS only, no <style> tags.
+   Want the Monochromic base theme too? See custom-with-monochromic.css (it loads from a CDN). */
+
+:root {
+  --husky-white: #ffffff;
+  --husky-accent: #6d4aff;
+  --husky-glass: rgba(109, 74, 255, 0.15);
+  --husky-glass-border: rgba(109, 74, 255, 0.3);
+  --accent: var(--husky-accent) !important;
+  --theme-primary-color: var(--husky-accent) !important;
+  --theme-accent-text: var(--husky-accent) !important;
+}
+
+/* Glass: header and drawer only */
+.skinHeader,
+.mainDrawer {
+  backdrop-filter: blur(10px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Cards */
+.card .cardContent,
+.cardImageContainer {
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+@media (hover: hover) {
+  .card:hover .cardContent {
+    box-shadow: 0 0 20px var(--husky-glass-border) !important;
+    transform: translateY(-5px);
+    border-color: var(--husky-glass-border) !important;
+  }
+}
+
+/* Buttons */
+.button-submit,
+.button-accent,
+.raised.emby-button,
+.btnPlay,
+.playButton {
+  background: linear-gradient(135deg, #6d4aff 0%, #4a29d1 100%) !important;
+  color: var(--husky-white) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(109, 74, 255, 0.4) !important;
+  transition: all 0.2s ease !important;
+}
+@media (hover: hover) {
+  .button-submit:hover,
+  .button-accent:hover,
+  .raised.emby-button:hover,
+  .btnPlay:hover,
+  .playButton:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 6px 18px rgba(109, 74, 255, 0.6) !important;
+    transform: scale(1.03);
+  }
+}
+
+/* Input focus */
+.emby-input:focus,
+.emby-select:focus,
+.emby-textarea:focus {
+  border-color: var(--husky-accent) !important;
+  box-shadow: 0 0 0 3px rgba(109, 74, 255, 0.3) !important;
+}
+
+/* Nav highlight (inset shadow avoids layout shift) */
+.navMenuOption-selected,
+.navMenuOption:hover {
+  background-color: var(--husky-glass) !important;
+  color: var(--husky-white) !important;
+  box-shadow: inset 4px 0 0 var(--husky-accent) !important;
+}
+
+/* Progress bars */
+.itemProgressBarForeground {
+  background-color: var(--husky-accent) !important;
+  box-shadow: 0 0 8px var(--husky-accent) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px !important; }
+::-webkit-scrollbar-track { background: transparent !important; }
+::-webkit-scrollbar-thumb {
+  background: var(--husky-accent) !important;
+  border-radius: 10px !important;
+  border: 2px solid transparent !important;
+  background-clip: content-box !important;
+}
+
+/* Accessibility: respect reduced-motion settings and keep text readable */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .card:hover .cardContent,
+  .button-submit:hover, .button-accent:hover, .raised.emby-button:hover,
+  .btnPlay:hover, .playButton:hover { transform: none !important; }
+}

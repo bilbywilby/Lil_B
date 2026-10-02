@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "devhound"
+version = "0.2.1"
+description = "Offline, privacy-first repo checks: secrets, FUNDING.json, brand assets"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = []
+
+[project.scripts]
+devhound = "devhound.cli:main"
+
+[tool.setuptools]
+packages = ["devhound"]

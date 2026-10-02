@@ -1,0 +1,3 @@
+# Paths the secret scanner skips (fnmatch patterns). Test fixtures build fake secrets on purpose.
+tests/
+assets/reference/

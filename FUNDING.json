@@ -1,6 +1,32 @@
 {
+  "schema_version": "1.0",
+  "project": {
+    "name": "DevHound",
+    "repository": "https://github.com/bilbywilby/Lil_B",
+    "license": "MIT",
+    "funding_model": "community_supported"
+  },
+  "funding_status": {
+    "seeking_funding": false,
+    "active": true,
+    "accepts_individual_donations": true,
+    "accepts_corporate_donations": true,
+    "accepts_in_kind": true
+  },
+  "use_of_funds_breakdown": {
+    "infrastructure_costs_percentage": 20,
+    "developer_compensation_percentage": 30,
+    "community_support_percentage": 20,
+    "legal_and_compliance_percentage": 15,
+    "reserve_and_emergency_percentage": 15
+  },
+  "use_of_funds_notes": "Allocation set by the maintainer. Percentages must total exactly 100.",
+  "privacy": {
+    "telemetry_opt_in": false,
+    "publish_donor_names": false,
+    "sponsor_listing_requires_consent": true
+  },
   "individual_donations": {
-    "accepts_donations": true,
     "platforms": {
       "github_sponsors": "",
       "open_collective": "",
@@ -8,7 +34,6 @@
     }
   },
   "corporate_sponsorship": {
-    "accepts_corporate_donations": true,
     "enterprise_contact_email": "",
     "sponsorship_levels": [
       {
@@ -48,6 +73,6 @@
       "ci_cd_minutes": true,
       "software_licenses": true
     },
-    "notes": "Sponsorships are non-exclusive. Logo placement must follow BRAND.md / README brand guidelines. Fill in existing_sponsors as real sponsorship agreements are signed — do not populate with placeholder or example companies."
+    "notes": "Sponsorships are non-exclusive. Sponsors are listed publicly only with their written consent. Logo placement must follow BRAND.md. Add real sponsors to existing_sponsors only after an agreement is in place."
   }
 }

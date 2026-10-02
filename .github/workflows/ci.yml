@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Funding file
+        run: python -m devhound check --strict
+      - name: Brand assets
+        run: python -m devhound brand
+      - name: Secret scan
+        run: python -m devhound scan . --format sarif --output devhound.sarif
+      - name: Upload scan results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: devhound-sarif
+          path: devhound.sarif
+          if-no-files-found: ignore

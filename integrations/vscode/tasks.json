@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "DevHound: scan for secrets",
+      "type": "shell",
+      "command": "devhound scan .",
+      "problemMatcher": "$gcc",
+      "presentation": { "reveal": "never", "panel": "dedicated", "clear": true },
+      "group": "test"
+    },
+    {
+      "label": "DevHound: check FUNDING.json",
+      "type": "shell",
+      "command": "devhound check",
+      "problemMatcher": "$gcc",
+      "presentation": { "reveal": "never", "panel": "dedicated", "clear": true }
+    },
+    {
+      "label": "DevHound: verify brand assets",
+      "type": "shell",
+      "command": "devhound brand",
+      "problemMatcher": "$gcc",
+      "presentation": { "reveal": "never", "panel": "dedicated", "clear": true }
+    }
+  ]
+}

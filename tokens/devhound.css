@@ -1,0 +1,12 @@
+/* DevHound design tokens. Accent is for UI chrome, never to fill the husky mark. */
+:root {
+  --husky-black: #000000;
+  --husky-white: #ffffff;
+  --husky-accent: #6d4aff;
+  --husky-slate: #0f172a;
+  --husky-gray: #64748b;
+  --husky-glass: rgba(109, 74, 255, 0.15);
+  --husky-glass-border: rgba(109, 74, 255, 0.3);
+  --husky-radius-card: 12px;
+  --husky-radius-button: 8px;
+}
