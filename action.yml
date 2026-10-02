@@ -1,0 +1,64 @@
+name: DevHound checks
+description: Offline secret scan, FUNDING.json validation and brand check. Makes no network requests and never prints secret values.
+author: bilbywilby
+branding:
+  icon: shield
+  color: purple
+
+inputs:
+  scan:
+    description: Scan for hardcoded secrets
+    default: 'true'
+  funding:
+    description: Validate FUNDING.json (skipped quietly if the file is absent)
+    default: 'true'
+  brand:
+    description: Verify brand assets (only useful in repos that ship them)
+    default: 'false'
+  strict:
+    description: Treat warnings in the funding check as errors
+    default: 'false'
+  paths:
+    description: Space-separated paths to scan
+    default: '.'
+  sarif:
+    description: Write SARIF results to this file (empty to skip)
+    default: ''
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+    - name: Install DevHound (local copy, no registry)
+      shell: bash
+      run: python -m pip install --quiet "$GITHUB_ACTION_PATH"
+    - name: Run checks
+      shell: bash
+      env:
+        INPUT_SCAN: ${{ inputs.scan }}
+        INPUT_FUNDING: ${{ inputs.funding }}
+        INPUT_BRAND: ${{ inputs.brand }}
+        INPUT_STRICT: ${{ inputs.strict }}
+        INPUT_PATHS: ${{ inputs.paths }}
+        INPUT_SARIF: ${{ inputs.sarif }}
+      run: |
+        status=0
+        read -r -a paths <<< "$INPUT_PATHS"
+        if [ "$INPUT_SCAN" = "true" ]; then
+          if [ -n "$INPUT_SARIF" ]; then
+            devhound scan "${paths[@]}" --format sarif --output "$INPUT_SARIF" || status=1
+          else
+            devhound scan "${paths[@]}" || status=1
+          fi
+        fi
+        if [ "$INPUT_FUNDING" = "true" ]; then
+          strict=()
+          [ "$INPUT_STRICT" = "true" ] && strict=(--strict)
+          devhound check --if-present "${strict[@]}" || status=1
+        fi
+        if [ "$INPUT_BRAND" = "true" ]; then
+          devhound brand || status=1
+        fi
+        exit $status

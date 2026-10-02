@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.3.0 (2026-10-02)
+
+### Added
+- `addons/vscode`: VS Code extension (Problems panel, status bar, optional scan-on-save).
+- `addons/browser`: local-only Manifest V3 extension; rules generated from the Python scanner, CSP blocks all network.
+- `addons/jellyfin/apply_branding.py`: plan / apply / restore Jellyfin CSS (local servers only, key via environment, automatic backup).
+- Root `action.yml` (GitHub Action) and `.pre-commit-hooks.yaml`.
+- `addons/shell/devhound.sh`: bash/zsh tab-completion generated from the real CLI, plus `dh`.
+- Drift guards: generated browser rules and shell completion must match the Python source.
+- 29 add-in tests (privacy invariants, mock Jellyfin server, action simulation), mutation-checked.
+
+### Changed
+- README is now the project overview (brand guidelines remain in BRAND.md).
+
 ## 0.2.1 (2026-10-01)
 
 ### Fixed

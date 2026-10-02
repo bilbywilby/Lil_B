@@ -28,3 +28,7 @@ Run `devhound scan --format sarif -o devhound.sarif`; any SARIF-aware tool can l
 ## Jellyfin
 
 See `jellyfin/README.md`.
+
+## Add-ins
+
+Packaged add-ins (VS Code extension, browser extension, Jellyfin applier, CI, shell) live in [`../addons/`](../addons/README.md).

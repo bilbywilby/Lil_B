@@ -1,0 +1,35 @@
+{
+  "name": "devhound-vscode",
+  "displayName": "DevHound",
+  "description": "Offline secret scan, FUNDING.json and brand checks in the Problems panel. No network, no telemetry.",
+  "version": "0.1.0",
+  "publisher": "bilbywilby",
+  "license": "MIT",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Linters"],
+  "main": "./extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "contributes": {
+    "commands": [
+      { "command": "devhound.scan", "title": "DevHound: Scan workspace for secrets" },
+      { "command": "devhound.check", "title": "DevHound: Check FUNDING.json" },
+      { "command": "devhound.brand", "title": "DevHound: Verify brand assets" },
+      { "command": "devhound.clear", "title": "DevHound: Clear findings" }
+    ],
+    "configuration": {
+      "title": "DevHound",
+      "properties": {
+        "devhound.executable": {
+          "type": "string",
+          "default": "devhound",
+          "description": "Command to run. If not found, falls back to `python3 -m devhound`."
+        },
+        "devhound.scanOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Re-scan the workspace whenever a file is saved. Off by default."
+        }
+      }
+    }
+  }
+}

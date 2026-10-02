@@ -14,18 +14,18 @@ The spec describes a hybrid edge/cloud design. This repo implements the **local 
 
 | # | Add-in | Status | How to use it today | Needed to ship the full version |
 |---|---|---|---|---|
-| 1 | VS Code / VSCodium | **Config recipe** | `integrations/vscode/tasks.json` → Problems panel via `$gcc`; SARIF Viewer for rich results | Extension (TypeScript/LSP) |
+| 1 | VS Code / VSCodium | **Extension (unpacked), tested core** | `addons/vscode/`: copy into your extensions folder; findings appear in Problems | Marketplace packaging (`vsce`), run against more VS Code versions |
 | 2 | JetBrains | **Config recipe** | External Tool or File Watcher running `devhound scan .`; load SARIF | Kotlin plugin |
-| 3 | Browser extension | **Not started** | n/a | Manifest V3 extension; must analyze diffs locally unless the user opts in per action |
+| 3 | Browser extension | **Local-only MV3 extension, tested core** | `addons/browser/`: load unpacked; scans selected/page text on click. CSP blocks all network | Store packaging; diff-aware GitHub mode |
 | 4 | Slack assistant | **Not started** | n/a | Server component; needs hosting and secret management |
 | 5 | Discord bot | **Not started** | n/a | Same as Slack |
-| 6 | CLI + hooks (`husky-guard`) | **Implemented, tested** | `devhound` (Python, stdlib only) | Optional Go/Rust single binary |
+| 6 | CLI + hooks (`husky-guard`) | **Implemented, tested** | `devhound` (Python, stdlib only); `addons/ci/` adds a GitHub Action and pre-commit hook; `addons/shell/` adds completion and `dh` | Optional Go/Rust single binary |
 | 7 | Neovim | **Config recipe** | `makeprg` + `errorformat` snippet in `integrations/README.md` | Lua plugin / Telescope picker |
 | 8 | Raycast / Alfred | **Not started** | n/a | macOS-only; clipboard features need explicit user action |
 | 9 | Docker Desktop extension | **Not started** | n/a | Extension SDK; see privacy note below |
-| 10 | Jellyfin | **CSS theme + splash** | `integrations/jellyfin/` (no plugin needed) | C# server plugin only if middleware injection is wanted |
+| 10 | Jellyfin | **CSS theme, splash, applier script** | `integrations/jellyfin/` plus `addons/jellyfin/apply_branding.py` (plan/apply/restore, local servers only) | C# server plugin only if middleware injection is wanted |
 
-"Config recipe" means documented and low-risk but not verified against every editor version; the CLI behind it is tested.
+"Config recipe" means documented and low-risk but not verified against every editor version; the CLI behind it is tested. Add-ins marked "tested core" have their logic unit-tested under Node/Python, but I have not run them inside a real VS Code, browser or Jellyfin server yet. The Neovim plugin is still a recipe because it can't be tested without Neovim.
 
 ## Core components
 

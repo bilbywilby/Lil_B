@@ -15,8 +15,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: Unit tests
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install test dependency (YAML parser for action tests)
+        run: python -m pip install --quiet pyyaml
+      - name: Unit tests (Python, plus Node tests for add-ins)
         run: python -m unittest discover -s tests -v
+      - name: Generated files are current
+        run: |
+          python scripts/gen_browser_rules.py --check
+          python scripts/gen_completions.py --check
       - name: Funding file
         run: python -m devhound check --strict
       - name: Brand assets
@@ -30,3 +39,13 @@ jobs:
           name: devhound-sarif
           path: devhound.sarif
           if-no-files-found: ignore
+
+  dogfood-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run the DevHound action from this checkout
+        uses: ./
+        with:
+          brand: 'true'
+          strict: 'true'

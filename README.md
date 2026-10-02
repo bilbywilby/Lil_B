@@ -1,248 +1,77 @@
-# Brand Guidelines — DevHound
+<p align="center">
+  <img src="./assets/logo/husky-primary.svg" alt="DevHound logo: stylized husky head with triangular D-tag collar" width="160"/>
+</p>
 
-**Last Updated:** August 5, 2026
-**Version:** 1.1.0
+<h1 align="center">DevHound</h1>
 
 <p align="center">
-  <img src="./assets/logo/husky-primary.svg" alt="DevHound logo: stylized husky head with triangular D-tag collar" width="200"/>
+  Offline, privacy-first checks for your repo: secrets, funding files, and brand assets.<br/>
+  <strong>No network. No telemetry. Secret values are never printed.</strong>
 </p>
 
 ---
 
-## Overview
+## Quick start
 
-DevHound is an open-source project with a distinctive husky mascot featuring a triangular collar tag bearing the letter **D**. These guidelines ensure consistent, respectful use of our branding across all contexts.
-
----
-
-## Logo Description
-
-### Official Logo Components
-
-| Element | Description |
-|---|---|
-| **Mascot** | Stylized husky/Alaskan malamute head, front-facing, black-and-white line art |
-| **Collar** | Triangular pendant tag hanging from neck, centered on chest area |
-| **Letter Mark** | Capital **D** engraved on triangular collar tag, pointing downward |
-| **Style** | Vector line art, high contrast black on white background |
-| **Expression** | Alert, friendly, approachable canine face with forward-facing eyes |
-
-### Logo Variants
-
-| Variant | File | Use case |
-|---|---|---|
-| Primary (black) | [`husky-primary.svg`](./assets/logo/husky-primary.svg) | Light backgrounds |
-| Dark mode (white) | [`husky-dark-mode.svg`](./assets/logo/husky-dark-mode.svg) | Dark backgrounds |
-| Favicon | [`favicons/favicon-32x32.png`](./assets/logo/favicons/favicon-32x32.png) | Browser tabs |
-| App icon | [`icons/app-icon-1024.png`](./assets/logo/icons/app-icon-1024.png) | Mobile / desktop app icons |
-| Social card | [`og-card.png`](./assets/logo/og-card.png) | Link previews (1200×630) |
-| Sponsor badge | [`sponsor-badge.png`](./assets/logo/sponsor-badge.png) | Sponsor placements (200×200) |
-
-All raster sizes are generated from the master vector (`husky-primary.svg`) — see [Regenerating assets](#regenerating-assets).
-
----
-
-## Usage Rules
-
-### ✅ Do
-
-| Guideline | Specification |
-|---|---|
-| Use approved assets | Only use official logos from [`assets/logo/`](./assets/logo/) |
-| Maintain contrast | Keep black-on-white or white-on-black for optimal legibility |
-| Preserve proportions | Scale uniformly without distorting aspect ratio |
-| Include clear space | Maintain minimum padding equal to the height of the **D** tag |
-| Credit appropriately | Add "© DevHound Project" when used externally |
-| Link to source | Include a link back to the project when displaying the logo online |
-
-### ❌ Don't
-
-| Violation | Why it's not allowed |
-|---|---|
-| Add colors to the husky | Original is monochrome; color changes alter brand identity |
-| Remove or change the D tag | The **D** collar is the core identifying mark |
-| Stretch or skew the logo | Distortion damages recognizability and professionalism |
-| Use on busy backgrounds | Low contrast reduces visibility and clarity |
-| Alter facial features | Eyes, nose, ears, and fur lines are protected design elements |
-| Combine with other project logos | Prevents brand confusion and dilution |
-
----
-
-## Clear Space Requirements
-
-```
-┌───────────────────────────────┐
-│          ← clear space →      │
-│        ╱‾‾╲                   │
-│       │ ᐧᐧ │  eyes             │
-│        ╲__╱   nose/mouth       │
-│        │[D]│  ← collar tag     │
-│                                │
-└───────────────────────────────┘
-```
-
-**Minimum clearance around the entire logo:** equal to the height of the triangular **D** tag on the collar.
-
----
-
-## Color Specifications
-
-### Approved Color Palette
-
-| Use case | Hex | RGB |
-|---|---|---|
-| Primary Black | `#000000` | `0, 0, 0` |
-| Primary White | `#FFFFFF` | `255, 255, 255` |
-| Accent Purple | `#6D4AFF` | `109, 74, 255` |
-| Gray (fallback) | `#333333` | `51, 51, 51` |
-
-### Acceptable Color Combinations
-
-| Combination | Background | Foreground |
-|---|---|---|
-| Standard | White `#FFFFFF` | Black `#000000` |
-| Dark mode | Black `#000000` | White `#FFFFFF` |
-| Accent highlight | White | Purple `#6D4AFF`, secondary elements only |
-| Grayscale print | White | Gray `#333333`, for low-res output only |
-
-The husky mark itself should remain strictly black-and-white. Accent purple may be used for surrounding UI elements but should never fill the husky silhouette.
-
----
-
-## File Formats & Sizing
-
-| Purpose | Format | Dimensions | Path |
-|---|---|---|---|
-| Primary logo | SVG | Scalable | `assets/logo/husky-primary.svg` |
-| Dark mode logo | SVG | Scalable | `assets/logo/husky-dark-mode.svg` |
-| Website favicon | PNG | 32×32, 16×16 | `assets/logo/favicons/` |
-| App icon | PNG | 1024 / 512 / 256 / 128 / 64 / 32 / 16 | `assets/logo/icons/` |
-| Social media card | PNG | 1200×630 | `assets/logo/og-card.png` |
-| Sponsor badge | PNG | 200×200 | `assets/logo/sponsor-badge.png` |
-
-### Regenerating assets
-
-All raster assets are derived from a single vector trace of the master artwork. To rebuild them after editing the source:
+Requires Python 3.9+ and nothing else (standard library only).
 
 ```bash
-python3 scripts/render.py
+git clone git@github.com:bilbywilby/Lil_B.git && cd Lil_B
+python3 -m devhound doctor        # shows exactly what this tool does and doesn't do
+python3 -m devhound scan .        # find hardcoded secrets locally
+python3 -m devhound check         # validate FUNDING.json
+python3 -m devhound brand         # verify logo files are intact
 ```
 
-This reads `assets/logo/husky-primary.svg`, re-renders every PNG size listed above at 4× supersampling, and writes the dark-mode SVG variant. No network access or external SVG renderer is required.
+Install the `devhound` command (works on Android terminals, Termux and proot-Debian too):
 
----
-
-## Trademark & Protected Elements
-
-The following are the identifying design elements of the DevHound project:
-
-1. **Husky mascot design** — the specific facial structure, fur lines, and front-facing angle
-2. **Triangular D-tag collar** — the pendant with capital **D** letter
-3. **"DevHound"** — project name and wordmark
-4. **Combined logo lockup** — husky head + project name arrangement
-
-### Not protected (fair use)
-
-- Generic husky dog images without the D-tag collar
-- The letter **D** alone
-- Common canine mascot concepts in general
-
----
-
-## Derivative Works Policy
-
-### Community forks & related projects
-
-| Requirement | Action |
-|---|---|
-| Distinguish your mark | Replace or modify the **D**-tag collar to something distinct |
-| Avoid name confusion | Don't use "DevHound" as your own project's name |
-| Add a disclaimer | State "Not affiliated with the official DevHound project" |
-| Let us know | Open an issue or discussion describing your changes |
-
-### Acceptable modifications
-
-- Changing the collar tag letter (D → your own initial)
-- Slightly altering the facial expression, if the overall style stays distinct from ours
-- Removing the collar entirely
-
-### Discouraged
-
-- Using the exact logo for an unrelated commercial product
-- Selling merchandise with the unmodified logo
-- Implying endorsement by the DevHound project without confirming with maintainers first
-
----
-
-## Accessibility Guidelines
-
-### Alt text
-
-Always include descriptive alt text when embedding the logo:
-
-```html
-<img src="/assets/logo/husky-primary.svg"
-     alt="DevHound logo: stylized husky head with triangular D-tag collar">
+```bash
+pip install .            # or: pipx install .
+devhound hooks install   # block commits that contain secrets
 ```
 
-### Color contrast
+## What it does
 
-| Context | Minimum ratio | Recommended |
-|---|---|---|
-| Text on logo background | 4.5:1 | 7:1 |
-| Logo on page background | 3:1 | 4.5:1 |
-| Interactive elements (buttons) | 3:1 | 4.5:1 |
-
-### Motion
-
-- ❌ No rapid flashing or strobing
-- ❌ No continuous rotation
-- ✅ Subtle fade-in/out transitions are fine
-
----
-
-## Examples of Correct Usage
-
-| Scenario | Implementation |
+| Command | What you get |
 |---|---|
-| Website header | Centered black husky logo on white navigation bar |
-| GitHub README | Logo in top-left corner with "DevHound" text beside it |
-| Presentation slide | Logo in bottom-right footer with clear space |
-| T-shirt design | Large centered logo with adequate margin around edges |
+| `devhound scan [paths]` | Detects AWS/GitHub/Slack/Stripe/Google keys, private keys, and high-entropy secret assignments. Output shows file, line and rule only, never the secret. |
+| `devhound scan --staged` | Scans exactly what you're about to commit. |
+| `devhound check` | Validates `FUNDING.json`: five fund-use percentages total exactly 100, flags are real JSON booleans, sponsors match defined tiers, license is SPDX. |
+| `devhound brand` | Confirms required assets exist, SVGs are valid, the splash is 16:9, and the official marks match recorded checksums. |
+| `devhound hooks install` | Adds pre-commit (secret scan) and pre-push (funding check) hooks. Never overwrites a hook you wrote unless you pass `--force`; fails open if DevHound isn't installed. |
+| `devhound init` | Writes a starter `FUNDING.json`. |
+| `devhound mascot` | Prints the husky in your terminal. |
 
-### Avoid
+Every command supports `--format text|json|sarif` and `--output FILE`. Exit code `0` = clean, `1` = findings, `2` = usage error.
 
-| Scenario | Problem |
+Marking a false positive: add `devhound:ignore` to that line, or list paths in `.devhoundignore`. Bypass a hook once with `git commit --no-verify`.
+
+## Privacy
+
+Nothing leaves your machine. The CLI imports no networking modules (a test enforces this), has no telemetry, and redacts every detected secret. Full details in [PRIVACY.md](./PRIVACY.md).
+
+## Add-ins
+
+Everything below runs offline except where noted. Details in [`addons/`](./addons/README.md).
+
+| Add-in | Use it for |
 |---|---|
-| Colored husky with a gradient fill | Alters the mark |
-| Husky over a busy photo background | Poor legibility, no clear space |
-| Horizontally stretched logo | Damaged proportions |
-| D-tag removed "for a simpler look" | Loses the identifying element |
+| **VS Code extension** | Findings in the Problems panel |
+| **Browser extension** | Check text for secrets before pasting it anywhere (network blocked by its CSP) |
+| **GitHub Action / pre-commit** | Run the same checks in CI or on every commit |
+| **Shell integration** | Tab-completion and `dh`, one word to run every check |
+| **Jellyfin applier** | Apply the brand CSS to your media server (talks only to your local server) |
 
----
+Other editors: output is `file:line:col: level: message`, which most editors already understand. See [`integrations/`](./integrations/).
 
-## Provenance
+## Ecosystem roadmap
 
-`assets/reference/source-scan.png` is the original scanned artwork the vector trace (`husky-primary.svg`) was built from. `assets/reference/reference-photo.jpg` is a photo of the real dog that inspired the mascot design. Neither file is a brand asset — don't use them in place of the logo files in `assets/logo/`.
+The wider DevHound plan (IDE plugins, chat bots, browser extension and more) is mapped to what exists today in [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md), with the privacy rules every add-in must follow.
 
----
+## Docs
 
-## Changelog
+[BRAND.md](./BRAND.md) · [PRIVACY.md](./PRIVACY.md) · [SECURITY.md](./SECURITY.md) · [CONTRIBUTING.md](./CONTRIBUTING.md) · [GOVERNANCE.md](./GOVERNANCE.md) · [CHANGELOG.md](./CHANGELOG.md)
 
-| Version | Date | Changes |
-|---|---|---|
-| 1.0.0 | 2026-08-05 | Initial release |
-| 1.1.0 | 2026-08-05 | Added true vector trace of the mascot, dark-mode variant, full icon/favicon set, OG card, asset regeneration script; fixed formatting |
+## License
 
----
-
-## Related Documentation
-
-- [`FUNDING.json`](./FUNDING.json) — funding configuration
-- [`CONTRIBUTING.md`](./CONTRIBUTING.md) — how to contribute
-- [`GOVERNANCE.md`](./GOVERNANCE.md) — project governance model
-- [`LICENSE`](./LICENSE) — license terms
-
----
-
-**Questions or concerns?** Open an issue on this repository.
+Code: [MIT](./LICENSE). The husky mark and wordmark follow the usage terms in [BRAND.md](./BRAND.md).

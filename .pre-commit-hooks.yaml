@@ -1,0 +1,21 @@
+# Use from another repo's .pre-commit-config.yaml:
+#   repos:
+#     - repo: https://github.com/bilbywilby/Lil_B
+#       rev: main            # pin a tag or commit for reproducibility
+#       hooks:
+#         - id: devhound-scan
+#         - id: devhound-funding
+- id: devhound-scan
+  name: DevHound secret scan
+  description: Scan changed files for hardcoded secrets locally (values are never printed).
+  entry: devhound scan
+  language: python
+  pass_filenames: true
+
+- id: devhound-funding
+  name: DevHound FUNDING.json check
+  description: Validate FUNDING.json (percentages total 100, real booleans, SPDX).
+  entry: devhound check
+  language: python
+  files: ^FUNDING\.json$
+  pass_filenames: false

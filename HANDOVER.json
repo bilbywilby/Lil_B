@@ -1,0 +1,89 @@
+{
+  "project": "Lil_B / devhound",
+  "document_version": "1.0.0",
+  "status": "Stable",
+  "maintainer": "bilbywilby",
+  "technical_lead": "Carter",
+  "architecture": {
+    "core_engine": "devhound/secrets.py",
+    "entry_point": "devhound/cli.py",
+    "configuration_files": [
+      ".devhoundignore",
+      "FUNDING.json"
+    ],
+    "integration_points": [
+      "git pre-commit hooks",
+      "unittest discovery"
+    ]
+  },
+  "rule_taxonomy": {
+    "security_rules": [
+      {
+        "id": "DH-SEC-001",
+        "name": "Generic High Entropy Secret Detection",
+        "logic": "Shannon entropy >= 4.5 and token length >= 20 characters",
+        "severity": "error",
+        "description": "Detects random-looking strings likely to be API keys, passwords, or tokens."
+      },
+      {
+        "id": "DH-SEC-002",
+        "name": "Known Pattern Token Detection",
+        "logic": "Regex match for high-confidence patterns (e.g., AWS AKIA/ASIA keys)",
+        "severity": "error",
+        "description": "Matches strings against known vendor secret formats to reduce false positives."
+      }
+    ],
+    "compliance_rules": [
+      {
+        "id": "DH-FUND-002",
+        "name": "Funding Breakdown Validation",
+        "logic": "Verification of five mandatory percentage keys totaling exactly 100%",
+        "required_fields": [
+          "infrastructure_costs_percentage",
+          "developer_compensation_percentage",
+          "community_support_percentage",
+          "legal_and_compliance_percentage",
+          "reserve_and_emergency_percentage"
+        ],
+        "severity": "error"
+      }
+    ]
+  },
+  "critical_implementations": {
+    "git_index_scanning": {
+      "method": "git show :<path>",
+      "rationale": "Prevents 'worktree drift' where a user stages a secret but modifies the file on disk before committing. Ensuring the scan occurs on the index is mandatory for pre-commit integrity."
+    },
+    "opsec_zero_leak": {
+      "mechanism": "redact_secret_text()",
+      "implementation": "All identified secrets are replaced with [REDACTED] prior to terminal output rendering.",
+      "constraint": "No raw secret values shall ever be echoed to stdout/stderr during a scan or hook block."
+    },
+    "ignore_logic": {
+      "mechanism": "fnmatch.fnmatch",
+      "rationale": "Supports glob-style patterns (e.g., *.bin) in .devhoundignore, ensuring flexibility across different file naming conventions."
+    }
+  },
+  "recent_remediations": [
+    {
+      "issue": "AttributeError in pattern access",
+      "fix": "Corrected reference from pattern.pattern.pattern to pattern.pattern",
+      "impact": "Resolved engine crash during known pattern matching."
+    },
+    {
+      "issue": "FUNDING.json schema mismatch",
+      "fix": "Standardized keys to match DH-FUND-002 requirements",
+      "impact": "Restored compliance check passes."
+    },
+    {
+      "issue": "Secret leakage in pre-commit output",
+      "fix": "Implemented mandatory redaction layer for line previews",
+      "impact": "Satisfied OPSEC zero-leak requirements."
+    }
+  ],
+  "operational_commands": {
+    "full_test": "python3 -m unittest discover -s tests",
+    "staged_scan": "python3 -m devhound scan --staged",
+    "compliance_check": "python3 -m devhound check --strict"
+  }
+}

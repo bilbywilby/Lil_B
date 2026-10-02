@@ -1,0 +1,33 @@
+...OK checked /home/droid/Lil_B/FUNDING.json (0 error(s), 0 warning(s))
+FAIL checked /nonexistent/FUNDING.json (1 error(s), 0 warning(s))
+OK no FUNDING.json present; nothing to check
+.OK checked /tmp/tmp74gd5z51/FUNDING.json (0 error(s), 0 warning(s))
+/tmp/tmp74gd5z51/FUNDING.json already exists; not overwriting.
+.............................
+----------------------------------------------------------------------
+Ran 33 tests in 0.892s
+
+OK
+/nonexistent/FUNDING.json:1:1: error: /nonexistent/FUNDING.json not found. [DH-FUND-001]
+    fix: Run `devhound init` to create one.
+usage: devhound [-h] [--version] <command> ...
+
+Offline, privacy-first repo checks for DevHound projects.
+
+positional arguments:
+  <command>
+    check     validate FUNDING.json (percentages total 100, real booleans,
+              SPDX)
+    scan      scan for hardcoded secrets locally (values are never printed)
+    brand     verify brand assets and official-mark checksums
+    hooks     install/remove git hooks (husky-guard)
+    init      create a starter FUNDING.json
+    doctor    show privacy guarantees and environment
+    mascot    print the DevHound husky
+
+options:
+  -h, --help  show this help message and exit
+  --version   show program's version number and exit
+Created /tmp/tmp74gd5z51/FUNDING.json. Edit the percentages (they must total 100), then run `devhound check`.
+OK checked FUNDING.json (0 error(s), 0 warning(s))
+OK scanned 46 file(s) locally (0 error(s), 0 warning(s))

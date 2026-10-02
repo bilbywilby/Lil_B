@@ -3,4 +3,4 @@
 Privacy contract: this package makes no network calls, collects no telemetry,
 and never prints secret values it detects. See PRIVACY.md.
 """
-__version__ = "0.2.1"
+__version__ = "0.3.0"

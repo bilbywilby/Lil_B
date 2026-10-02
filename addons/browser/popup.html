@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DevHound</title>
+  <style>
+    body { font: 14px system-ui, sans-serif; width: 320px; margin: 12px; color: #0f172a; }
+    h1 { font-size: 15px; margin: 0 0 4px; }
+    p.note { color: #475569; font-size: 12px; margin: 4px 0 10px; }
+    button { background: #6d4aff; color: #fff; border: 0; border-radius: 8px; padding: 8px 10px; margin: 0 6px 6px 0; cursor: pointer; font-weight: 600; }
+    button:focus-visible { outline: 3px solid #0f172a; outline-offset: 2px; }
+    ul { padding-left: 18px; margin: 8px 0 0; }
+    .ok { color: #166534; } .bad { color: #b91c1c; }
+  </style>
+</head>
+<body>
+  <h1>DevHound secret check</h1>
+  <p class="note">Runs entirely in this popup. Nothing is sent anywhere, and matched values are never shown.</p>
+  <button id="sel">Scan selected text</button>
+  <button id="page">Scan page text</button>
+  <div id="out" role="status" aria-live="polite"></div>
+  <script src="rules.js"></script>
+  <script src="scan.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
